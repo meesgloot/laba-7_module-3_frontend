@@ -1,8 +1,8 @@
 <template>
   <div id="center">
-    <div v-for="(item, index) in data" :key="item.id" @click="isActive[index] = !isActive[index]" class="cards" :class="{ active: isActive[index] }">
+    <div v-for="(item, index) in data" :key="item.id" @click="isActive[index] = !isActive[index]" class="cards" :class="{ active: isActive[index],invisible: isHidden[index] }">
       <p class="main">{{ item.name }}</p>
-      <button @click="isActive[index] = !isActive[index]">Hidden</button>
+      <button @click="isHidden[index] = !isHidden[index]">Hidden</button>
       <img :src="item.img" alt="Movie">
       <p class="text">{{ item.text }}</p>
     </div>
@@ -17,7 +17,7 @@ export default {
     return {
       data: json,
       isActive: new Array(json.length).fill(false),
-      
+      isHidden: new Array(json.length).fill(false),
     };
   },
  
@@ -25,7 +25,9 @@ export default {
 </script>
 
 <style>
-
+  .invisible {
+    visibility: hidden;
+  }
   button{
     border-radius: 6px;
     background-color: aqua;
